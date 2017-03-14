@@ -13,10 +13,8 @@ public class Driver {
 		String password = "pettejn_tdt4145";
 		
 		try {
-			System.out.println(url + "?user=" + username + "&password=" + password);
 			// 1. get a connection to a database
 			myConn = DriverManager.getConnection(url + "?user=" + username + "&password=" + password);
-			System.out.println(url + "?user=" + username + "&password=" + password);
 		}
 		catch (SQLException ex) {
 			System.out.println("SQLExeption: " + ex.getMessage());
@@ -43,7 +41,21 @@ public class Driver {
 	public void getOrderedExcercises() {
 		try {
 			Statement myStmt = myConn.createStatement();
-			String query = "SELECT * FROM TRENINGSØKT";
+			System.out.println("Hva vil du sortere etter? (Prestasjon, Personlig form, Dato)");
+			Scanner scanner = new Scanner(System.in);
+			String query = null;
+			String basj = scanner.nextLine();
+			if (basj.equals("Prestasjon")) {
+				query = "SELECT * FROM TRENINGSØKT\n ORDER BY PRESTASJON";
+			}
+			else if(basj.equals("Dato")) {
+				query = "SELECT * FROM TRENINGSØKT\n ORDER BY DATO";
+			}
+			else if(basj.equals("Personlig form")) {
+				query = "SELECT * FROM TRENINGSØKT\n ORDER BY PERSONLIGFORM";
+			}
+			
+			scanner.close();
 			if (myStmt.execute(query)) {
 				rs = myStmt.getResultSet();
 			}
@@ -91,9 +103,6 @@ public class Driver {
 		driver.connect();
 
 		driver.getOrderedExcercises();
-
-		driver.insert();
-		driver.query();
 	}
 	
 }
