@@ -63,30 +63,39 @@ public class Driver {
 	public void insert() {
 		try {
 			System.out.println("Enter database name: ");
-			Scanner scanner1 = new Scanner(System.in);
-			String dbname = scanner1.next();
-			scanner1.close();
+			Scanner scanner = new Scanner(System.in);
+			String dbname = scanner.nextLine();
+			
 			System.out.println("Enter database attributes, then the values");
-			Scanner scanner2 = new Scanner(System.in);
-			String attributes = scanner2.next();
-			while (scanner2.hasNext()) {
+			String attributes = scanner.nextLine();
+			
+			while (scanner.hasNext()) {
 				String input = "INSERT INTO " + dbname + " (";
-				input += attributes + ") VALUES (" + scanner2.next() +");";
+				input += attributes + ") VALUES (" + scanner.nextLine() +");";
 				myStmt = myConn.createStatement();
 				myStmt.executeUpdate(input);
 				input = null;
 			}
-			scanner2.close();
+			
+			scanner.close();
 		}
+		
 		catch (SQLException ex) {
 			System.out.println("SQLExeption: " + ex.getMessage());
 		}
+		
 	}
 	
 	public static void main(String[] args) {
 		Driver driver = new Driver();
 		driver.connect();
+<<<<<<< HEAD
 		driver.getOrderedExcercises();
+=======
+		driver.insert();
+		driver.query();
+		
+>>>>>>> master
 	}
 	
 }
