@@ -67,6 +67,7 @@ public class Driver {
 		Driver driver = new Driver();
 		driver.connect();
 		driver.query();
+		driver.insert();
 	}
 	
 }
