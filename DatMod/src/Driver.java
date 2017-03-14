@@ -89,13 +89,11 @@ public class Driver {
 	public static void main(String[] args) {
 		Driver driver = new Driver();
 		driver.connect();
-<<<<<<< HEAD
+
 		driver.getOrderedExcercises();
-=======
+
 		driver.insert();
 		driver.query();
-		
->>>>>>> master
 	}
 	
 }
