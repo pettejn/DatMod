@@ -21,7 +21,7 @@ public class Driver {
 		}
 	}
 	
-	public void query() {
+	public void excercises() {
 		try {
 			Statement myStmt = myConn.createStatement();
 			String query = "SELECT * FROM ØVELSE";
@@ -44,14 +44,14 @@ public class Driver {
 			System.out.println("Hva vil du sortere etter? (Prestasjon, Personlig form, Dato)");
 			Scanner scanner = new Scanner(System.in);
 			String query = null;
-			String basj = scanner.nextLine();
-			if (basj.equals("Prestasjon")) {
+			String choice = scanner.nextLine();
+			if (choice.equals("Prestasjon")) {
 				query = "SELECT * FROM TRENINGSØKT\n ORDER BY PRESTASJON";
 			}
-			else if(basj.equals("Dato")) {
+			else if(choice.equals("Dato")) {
 				query = "SELECT * FROM TRENINGSØKT\n ORDER BY DATO";
 			}
-			else if(basj.equals("Personlig form")) {
+			else if(choice.equals("Personlig form")) {
 				query = "SELECT * FROM TRENINGSØKT\n ORDER BY PERSONLIGFORM";
 			}
 			
@@ -74,11 +74,11 @@ public class Driver {
 	
 	public void insert() {
 		try {
-			System.out.println("Enter database name: ");
+			System.out.println("Skriv tabellnavn: ");
 			Scanner scanner = new Scanner(System.in);
 			String dbname = scanner.nextLine();
 			
-			System.out.println("Enter database attributes, then the values");
+			System.out.println("Skriv atributtene du ønsker å legge til, deretter verdiene");
 			String attributes = scanner.nextLine();
 			
 			while (scanner.hasNext()) {
@@ -101,8 +101,19 @@ public class Driver {
 	public static void main(String[] args) {
 		Driver driver = new Driver();
 		driver.connect();
-
+		System.out.println("Hva vil du gjøre?\n\n1. Se øvelser\n2. Legge til i databasen\n3. Se oversikt over treningsøkter");
+		Scanner scanner = new Scanner(System.in);
+		String choice = scanner.nextLine();
+		if (choice.equals("1")) {
+		driver.excercises();
+		}
+		else if (choice.equals("2")) {
+		driver.insert();
+		}
+		else if (choice.equals("3")) {
 		driver.getOrderedExcercises();
+		}
+		scanner.close();
 	}
 	
 }
