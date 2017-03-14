@@ -17,14 +17,14 @@ public class Driver {
 			myConn = DriverManager.getConnection(url + "?user=" + username + "&password=" + password);
 		}
 		catch (SQLException ex) {
-			System.out.println("SQLExeption: " + ex.getMessage);
+			System.out.println("SQLExeption: " + ex.getMessage());
 		}
 	}
 	
 	public void query() {
 		try {
 			Statement myStmt = myConn.createStatement();
-			String query = "SELECT * FROM ØVELSE"
+			String query = "SELECT * FROM ØVELSE";
 			if (myStmt.execute(query)) {
 				rs = myStmt.getResultSet();
 			}
@@ -32,9 +32,9 @@ public class Driver {
 			while (rs.next()) {
 				System.out.println("Navn: "+rs.getString(1) + "," + "Beskrivelse: " + rs.getString(2));
 			}
-			catch (SQLException ex) {
-				System.out.println("SQLExeption: " + ex.getMessage);
-			}
+		}
+		catch (SQLException ex) {
+			System.out.println("SQLExeption: " + ex.getMessage());
 		}
 	}
 	
