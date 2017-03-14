@@ -8,13 +8,15 @@ public class Driver {
 	ResultSet rs = null;
 
 	public void connect() {
-		String url = "jdbc:mysql//localhost:3306/Trening";
-		String username = "student";
-		String password = "student";
+		String url = "jdbc:mysql://mysql.stud.ntnu.no/pettejn_tdt4145database";
+		String username = "pettejn_tdt4145";
+		String password = "pettejn_tdt4145";
 		
 		try {
+			System.out.println(url + "?user=" + username + "&password=" + password);
 			// 1. get a connection to a database
 			myConn = DriverManager.getConnection(url + "?user=" + username + "&password=" + password);
+			System.out.println(url + "?user=" + username + "&password=" + password);
 		}
 		catch (SQLException ex) {
 			System.out.println("SQLExeption: " + ex.getMessage());
