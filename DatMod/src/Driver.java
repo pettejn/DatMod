@@ -40,6 +40,26 @@ public class Driver {
 		}
 	}
 	
+	public void getOrderedExcercises() {
+		try {
+			Statement myStmt = myConn.createStatement();
+			String query = "SELECT * FROM TRENINGSØKT";
+			if (myStmt.execute(query)) {
+				rs = myStmt.getResultSet();
+			}
+			
+			System.out.println("ØktID   Dato         Starttidspunkt   Varighet   Personlig form   Prestasjon    Notat");
+			while (rs.next()) {
+				System.out.println(rs.getString(1) + "       " +  rs.getString(2) + "   " +  rs.getString(3) + "         " + 
+			rs.getString(4) + "          " +  rs.getString(5) + "                " +  rs.getString(6) + "             " +  rs.getString(7));
+				
+			}
+		}
+		catch (SQLException ex) {
+			System.out.println("SQLExeption: " + ex.getMessage());
+		}
+	}
+	
 	public void insert() {
 		try {
 			System.out.println("Enter database name: ");
@@ -66,8 +86,7 @@ public class Driver {
 	public static void main(String[] args) {
 		Driver driver = new Driver();
 		driver.connect();
-		driver.query();
-		driver.insert();
+		driver.getOrderedExcercises();
 	}
 	
 }
