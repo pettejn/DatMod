@@ -1,6 +1,6 @@
 
 import java.sql.*;
-
+import java.util.Scanner;
 
 public class Driver {
 	Connection myConn = null;
@@ -34,6 +34,29 @@ public class Driver {
 			while (rs.next()) {
 				System.out.println("Navn: "+rs.getString(1) + "," + "Beskrivelse: " + rs.getString(2));
 			}
+		}
+		catch (SQLException ex) {
+			System.out.println("SQLExeption: " + ex.getMessage());
+		}
+	}
+	
+	public void insert() {
+		try {
+			System.out.println("Enter database name: ");
+			Scanner scanner1 = new Scanner(System.in);
+			String dbname = scanner1.next();
+			scanner1.close();
+			System.out.println("Enter database attributes, then the values");
+			Scanner scanner2 = new Scanner(System.in);
+			String attributes = scanner2.next();
+			while (scanner2.hasNext()) {
+				String input = "INSERT INTO " + dbname + " (";
+				input += attributes + ") VALUES (" + scanner2.next() +");";
+				myStmt = myConn.createStatement();
+				myStmt.executeUpdate(input);
+				input = null;
+			}
+			scanner2.close();
 		}
 		catch (SQLException ex) {
 			System.out.println("SQLExeption: " + ex.getMessage());
